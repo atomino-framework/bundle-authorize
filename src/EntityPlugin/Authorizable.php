@@ -4,6 +4,7 @@ use Atomino\Molecules\Module\Authorizable\AuthorizableInterface;
 use Atomino\Entity\Generator\CodeWriter;
 use Atomino\Entity\Plugin\Plugin;
 
+
 #[\Attribute( \Attribute::TARGET_CLASS )]
 class Authorizable extends Plugin{
 

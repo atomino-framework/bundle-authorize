@@ -1,4 +1,4 @@
-<?php namespace Application\Modules\Authorize\EntityPlugin;
+<?php namespace Atomino\Molecules\EntityPlugin\Authorizable;
 
 /**
  * @method static \Atomino\Entity\Model model();
