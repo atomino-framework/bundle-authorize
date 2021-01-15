@@ -1,0 +1,16 @@
+{
+    "name": "atomino/authorize",
+    "authors": [
+        {
+            "name": "laborci",
+            "email": "gergely@laborci.hu"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Atomino\\Molecules\\Module\\Authorizable\\": "src/Module/",
+            "Atomino\\Molecules\\EntityPlugin\\Authorizable\\": "src/EntityPlugin/"
+        }
+    }
+}
