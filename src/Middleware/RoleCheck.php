@@ -2,22 +2,22 @@
 
 use Atomino\Molecules\Module\Authenticator\ApiAuthenticator;
 use Atomino\Molecules\Module\Authenticator\Authenticator;
+use Atomino\RequestPipeline\Pipeline\Handler;
 use Atomino\Responder\Middleware;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class RoleCheck extends Middleware{
+class RoleCheck extends Handler {
 
-	public static function setup(string $role, string|null $redirect = null){ parent::args(get_defined_vars()); }
+	public static function setup(string $role){ parent::args(get_defined_vars()); }
 
 	public function __construct(private Authenticator $authenticator){ }
 
-	protected function respond(Response $response): Response{
+	public function handle(Request $request): Response|null {
 		/** @var \Atomino\Molecules\Module\Authorizable\AuthorizableInterface $user */
 		$user = $this->authenticator->get();
-		if($user?->hasRole($this->getArgsBag('role'))) return $this->next($response);
-		$response->setStatusCode(Response::HTTP_FORBIDDEN);
-		if(!is_null($redirect = $this->getArgsBag('redirect'))) $this->redirect($response, $redirect);
-		return $response;
+		if($user?->hasRole($this->arguments->get('role'))) return $this->next($response);
+		return new Response(null,Response::HTTP_FORBIDDEN);
 	}
-	
+
 }
