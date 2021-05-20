@@ -1,5 +1,7 @@
 <?php namespace Atomino\Molecules\Module\Authorizable;
 
-interface AuthorizableInterface{
+use Atomino\Molecules\Module\Authenticator\AuthenticableInterface;
+
+interface AuthorizableInterface extends AuthenticableInterface {
 	public function hasRole(string $role):bool;
 }
