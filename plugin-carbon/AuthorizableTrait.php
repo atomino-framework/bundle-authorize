@@ -5,6 +5,12 @@
  */
 trait AuthorizableTrait {
 
+	public static function groupsOfRole(string ...$roles):array{
+		$result = [];
+		foreach (static::GROUPS as $group=>$groupRoles) if(count(array_intersect($roles, $groupRoles))) $result[] = $group;
+		return $result;
+	}
+	
 	public function hasRole(string|null $role): bool {
 		if ($role === null) return true;
 		$plugin = Authorizable::fetch(static::model());
